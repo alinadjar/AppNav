@@ -1,230 +1,189 @@
-// /**
-//  * Sample React Native App
-//  * https://github.com/facebook/react-native
-//  *
-//  * @format
-//  * @flow
-//  */
-
-// import React from 'react';
-// import {
-//   SafeAreaView,
-//   StyleSheet,
-//   ScrollView,
-//   View,
-//   Text,
-//   StatusBar,
-// } from 'react-native';
-
-// import {
-//   Header,
-//   LearnMoreLinks,
-//   Colors,
-//   DebugInstructions,
-//   ReloadInstructions,
-// } from 'react-native/Libraries/NewAppScreen';
-
-// class App extends Component { //: () => React$Node = () => {
-//   return (
-//     <>
-//       <StatusBar barStyle="dark-content" />
-//       <SafeAreaView>
-//         <ScrollView
-//           contentInsetAdjustmentBehavior="automatic"
-//           style={styles.scrollView}>
-//           <Header />
-//           {global.HermesInternal == null ? null : (
-//             <View style={styles.engine}>
-//               <Text style={styles.footer}>Engine: Hermes</Text>
-//             </View>
-//           )}
-//           <View style={styles.body}>
-//             <View style={styles.sectionContainer}>
-//               <Text style={styles.sectionTitle}>Step One</Text>
-//               <Text style={styles.sectionDescription}>
-//                 Edit <Text style={styles.highlight}>App.js</Text> to change this
-//                 screen and then come back to see your edits.
-//               </Text>
-//             </View>
-//             <View style={styles.sectionContainer}>
-//               <Text style={styles.sectionTitle}>See Your Changes</Text>
-//               <Text style={styles.sectionDescription}>
-//                 <ReloadInstructions />
-//               </Text>
-//             </View>
-//             <View style={styles.sectionContainer}>
-//               <Text style={styles.sectionTitle}>Debug</Text>
-//               <Text style={styles.sectionDescription}>
-//                 <DebugInstructions />
-//               </Text>
-//             </View>
-//             <View style={styles.sectionContainer}>
-//               <Text style={styles.sectionTitle}>Learn More</Text>
-//               <Text style={styles.sectionDescription}>
-//                 Read the docs to discover what to do next:
-//               </Text>
-//             </View>
-//             <LearnMoreLinks />
-//           </View>
-//         </ScrollView>
-//       </SafeAreaView>
-//     </>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   scrollView: {
-//     backgroundColor: Colors.lighter,
-//   },
-//   engine: {
-//     position: 'absolute',
-//     right: 0,
-//   },
-//   body: {
-//     backgroundColor: Colors.white,
-//   },
-//   sectionContainer: {
-//     marginTop: 32,
-//     paddingHorizontal: 24,
-//   },
-//   sectionTitle: {
-//     fontSize: 24,
-//     fontWeight: '600',
-//     color: Colors.black,
-//   },
-//   sectionDescription: {
-//     marginTop: 8,
-//     fontSize: 18,
-//     fontWeight: '400',
-//     color: Colors.dark,
-//   },
-//   highlight: {
-//     fontWeight: '700',
-//   },
-//   footer: {
-//     color: Colors.dark,
-//     fontSize: 12,
-//     fontWeight: '600',
-//     padding: 4,
-//     paddingRight: 12,
-//     textAlign: 'right',
-//   },
-// });
-
-// export default App;
+import React, { Component } from 'react';
+//import { View, Text, StyleSheet, Image } from 'react-native';
+import { Image } from 'react-native';
+import { NavigationActions, createAppContainer } from 'react-navigation';
 
 
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React, {Fragment} from 'react';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+  Container, Header, Title, Content, Footer, FooterTab,
+  Button, Left, Right, Body, Icon, Text, Accordion
+} from 'native-base';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
-const App = () => {
-  return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </Fragment>
-  );
-};
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+//-----------------------------------------------------------------------
+const dataArray = [
+  { title: "First Element", content: "Lorem ipsum dolor sit amet" },
+  { title: "Second Element", content: "Lorem ipsum dolor sit amet" },
+  { title: "Third Element", content: "Lorem ipsum dolor sit amet" }
+];
 
-export default App;
+
+
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+class MyHomeScreen extends Component {
+
+  static navigationOptions = {
+    drawerLabel: 'Sup Lead',
+    drawerIcon: () => (
+      <Image
+        style={{ width: 30, height: 30 }}
+        sourec={require('./src/assets/images/benz.png')}
+      />
+    )
+  }
+
+  navigateToScreen = (route) => () => {
+    const navigationAction = NavigationActions.navigate({
+      routeName: route
+    });
+    this.props.navigation.dispatch(navigationAction);
+  }
+
+  render() {
+    return (
+      <Container>
+        <Header>
+          <Left>
+            <Button transparent>
+              <Icon name='menu' />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Header</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} >
+          <Text>Home Screen ....</Text>
+          <Text onPress={this.navigateToScreen('Notifications')}>Click Here </Text>
+        </Content>
+        <Footer>
+          <FooterTab>
+            <Button full>
+              <Text>Footer</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
+    );
+  }
+}
+
+
+class MyAboutScreen extends Component {
+
+  static navigationOptions = {
+    drawerLabel: 'About',
+    drawerIcon: () => <Ionicons name="ios-brush" size={24} />
+  }
+
+  navigateToScreen = (route) => () => {
+    const navigationAction = NavigationActions.navigate({
+      routeName: route
+    });
+    this.props.navigation.dispatch(navigationAction);
+  }
+
+  render() {
+    return (
+      // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      //   <Text>This is the about screen....</Text>
+      //   {/* <Button
+      //     onPress={() => this.props.navigation.navigate('Home')}
+      //     title="Go to Home"
+      //   /> */}
+      //   <Text onPress={this.navigateToScreen('Home')}>Click Here </Text>
+      // </View>
+
+      <Container>
+        <Header>
+          <Left>
+            <Button transparent>
+              <Icon name='menu' />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Header</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} >
+          <Text>About Screen ....</Text>
+          <Accordion dataArray={dataArray} expanded={0} style={{ width: '100%' }}
+            headerStyle={{ backgroundColor: "#b7daf8" }}
+            contentStyle={{ backgroundColor: '#F55' }}
+            icon="add"
+            expandedIcon="remove"
+            iconStyle={{ color: "green" }}
+            expandedIconStyle={{ color: "red" }}
+          />
+          <Text onPress={this.navigateToScreen('Notifications')}>Click Here </Text>
+        </Content>
+        <Footer>
+          <FooterTab>
+            <Button full>
+              <Text>Footer</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
+    );
+  }
+}
+
+
+
+
+
+const customNavigator = (props) => (
+  <Container>
+    <Header style={{ height: 30 }} >
+      <Body>
+        <Image
+          style={{ width: 20, height: 25 }}
+          source={require('./src/assets/images/setting.png')} />
+      </Body>
+    </Header>
+    <Content>
+      <DrawerItems {...props} />
+    </Content>
+  </Container>
+);
+
+
+
+
+const MyNavigator = createAppContainer(createDrawerNavigator({
+  Home: {
+    screen: MyHomeScreen,
+    navigationOptions: ({ navigation }) => ({
+      drawerLabel: 'Supreme Leader'
+    })
+  },
+  Notifications: MyAboutScreen
+},
+  {
+    initialRouteName: 'Home',
+    //drawerWidth: 200,
+    //drawerPosition: 'right',
+    //drawerBackgroundColor: 'red',
+    //drawerType: 'front', // back , slide --> push the component as the drawer opens? or just open on that?!
+    contentComponent: customNavigator,
+    contentOptions: {// this config will apply to the items inside the drawer (drawerItems)
+      activeTintColor: 'red',
+      activeBackgroundColor: 'blue',
+    },
+  })
+);
+
+
+export default class App extends Component {
+  render() {
+    return (
+      <MyNavigator />
+    );
+  }
+}
