@@ -16,7 +16,7 @@ class LucyChat extends React.Component {
                     <Left>
                         <Button
                             transparent
-                            onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+                            onPress={() => this.props.navigation.openDrawer()}>
                             <Icon name="menu" />
                         </Button>
                     </Left>
@@ -27,7 +27,7 @@ class LucyChat extends React.Component {
                 </Header>
                 <Content padder>
                     <Item floatingLabel style={{ marginTop: 20 }}>
-                        <Label>Nine Chat</Label>
+                        <Label>Jade Chat</Label>
                         <Input />
                     </Item>
                     

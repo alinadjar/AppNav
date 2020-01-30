@@ -16,12 +16,12 @@ class LucyChat extends React.Component {
                     <Left>
                         <Button
                             transparent
-                            onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+                            onPress={() => this.props.navigation.openDrawer()}>
                             <Icon name="menu" />
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Lucy Chat</Title>
+                        <Title>Nine Chat</Title>
                     </Body>
                     <Right />
                 </Header>

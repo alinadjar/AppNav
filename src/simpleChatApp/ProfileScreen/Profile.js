@@ -5,7 +5,7 @@ import {
     Container, Header, Left, Body, Title,
     Card, CardItem, Content, Right, Icon, Button, Text
 } from "native-base";
-import { StackNavigator } from "react-navigation";
+//import { StackNavigator } from "react-navigation";
 
 import EditScreenOne from "./EditScreenOne.js";
 
@@ -42,10 +42,12 @@ class Profile extends React.Component {
 
 
 Profile.navigationOptions = ({ navigation }) => ({
-    header: (
+    header: (props) => (
         <Header>
             <Left>
-                <Button transparent onPress={() => navigation.navigate("DrawerOpen")}>
+                <Button transparent onPress={() => {alert('Hey....'); 
+                            //this.props.navigation.navigate("DrawerOpen");
+                            props.navigation.openDrawer();} }>
                     <Icon name="menu" />
                 </Button>
             </Left>

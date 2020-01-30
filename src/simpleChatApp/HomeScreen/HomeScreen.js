@@ -19,7 +19,10 @@ class HomeScreen extends Component {
                     <Left>
                         <Button
                             transparent
-                            onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+                            onPress={() => { //alert('Hey....'); 
+                            //this.props.navigation.navigate("DrawerOpen");
+                            this.props.navigation.openDrawer();
+                         }}>
                             <Icon name="menu" />
                         </Button>
                     </Left>
