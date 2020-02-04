@@ -18,14 +18,21 @@ import {
 //   ReloadInstructions,
 // } from 'react-native/Libraries/NewAppScreen';
 
+import RootNavigator from './src/routes';
+
+import AuthScreen from './src/components/auth';
+
 class App extends Component {
   render() {
+
+    //const MainContent = RootNavigator();
     return (
-      <View style={ styles.container }>
-        <Text>
-          Some Contetnt Here...
-        </Text>
-      </View>
+      // <View style={ styles.container }>        
+      //   <RootNavigator />
+      //   {/* <AuthScreen /> */}
+      //   <Text>Hey....</Text>
+      // </View>
+      <RootNavigator />
     );
   }
 };
