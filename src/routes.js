@@ -29,15 +29,7 @@ const AppStack = createBottomTabNavigator({
     Games: Games
 });
 
-// export default RootNavigator = () => {
-//     return createAppContainer(
-//         createSwitchNavigator({
-//             App: AppStack,
-//             Auth: AuthStack
-//         }, {
-//             initialRouteName: 'Auth'
-//         }));
-// }
+
 
 
 // const RootNavigator = createAppContainer(
@@ -47,43 +39,44 @@ const AppStack = createBottomTabNavigator({
 //     }, {
 //         initialRouteName: 'AuthStart'
 //     }));
+// export default RootNavigator;
 
 
-class HomeScreen extends React.Component {
-    static navigationOptions = {
-        title: 'Welcome to the app!',
-    };
 
-    render() {
-        return (
-            <View>
-                <Text>Now inside HomeScreen</Text>
-            </View>
-        );
-    }
 
-    _showMoreApp = () => {
-        this.props.navigation.navigate('Other');
-    };
+// export default createAppContainer(
+//     createStackNavigator({
+//         AppStart: AppStack,
+//         AuthStart: AuthStack,
+//         Home: HomeScreen
+//     },
+//     {
+//       initialRouteName: 'Home',
+//     })
+// );
 
-    _signOutAsync = async () => {
-        await AsyncStorage.clear();
-        this.props.navigation.navigate('Auth');
-    };
+
+export default RootNavigator = () => {
+    return createAppContainer(
+        createSwitchNavigator({
+            App: AppStack,
+            Auth: AuthStack
+        }, {
+            initialRouteName: 'Auth'
+        }));
 }
 
 
-export default createAppContainer(
-    createStackNavigator({
-        AppStart: AppStack,
-        AuthStart: AuthStack,
-        Home: HomeScreen
-    },
-    {
-      initialRouteName: 'Home',
-    })
-);
 
-//export default RootNavigator;
+// export default RootNavigator = (isAuthenticated) => {
+//     return createAppContainer(
+//         createSwitchNavigator({
+//             App: AppStack,
+//             Auth: AuthStack
+//         }, {
+//             initialRouteName: isAuthenticated? 'App' : 'Auth'
+//         }));
+// }
+
 
 

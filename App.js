@@ -20,29 +20,21 @@ import {
 
 import RootNavigator from './src/routes';
 
-import AuthScreen from './src/components/auth';
+
 
 class App extends Component {
   render() {
 
-    //const MainContent = RootNavigator();
+    const MainContent = RootNavigator();
     return (
-      // <View style={ styles.container }>        
-      //   <RootNavigator />
-      //   {/* <AuthScreen /> */}
-      //   <Text>Hey....</Text>
-      // </View>
-      <RootNavigator />
+      
+      <MainContent />
+
+      // sending a property if you need
+      // <MainContent isAuthenticated={true} /> 
     );
   }
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
 
 export default App;
