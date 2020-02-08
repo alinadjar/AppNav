@@ -27,7 +27,8 @@ export const getTokens = (cb) => {
 
 export const setTokens = (values,cb) => {
     const dateNow = new Date();
-    const expiration = dateNow.getTime() + (3600 * 1000); // The number of seconds in which the ID token expires
+    const expiration = dateNow.getTime() + (60 * 2); // 2 minutes
+    //dateNow.getTime() + (3600 * 1000); // The number of seconds in which the ID token expires
  
     AsyncStorage.multiSet([
         ['@nba_app@token',values.token],

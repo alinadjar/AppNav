@@ -25,7 +25,7 @@ import { bindActionCreators } from 'redux';
 class Auth extends Component {
 
   state = {
-    isLoading: false
+    isLoading: false// make true
   }
 
 
@@ -36,12 +36,44 @@ class Auth extends Component {
 
   componentDidMount() {
     getTokens((value) => {
+
+      console.log('after receiving getTokens:');
+      console.log(value); // logs the following:
+
+      //     (4)[Array(2), Array(2), Array(2), Array(2)]
+      //     0: Array(2)
+      //         0: "@nba_app@token"
+      //         1: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjI1OTc0MmQyNjlhY2IzNWZiNjU3YzBjNGRkMmM3YjcyYWEzMTRiNTAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbmJhLWFwcC1iOTYxYiIsImF1ZCI6Im5iYS1hcHAtYjk2MWIiLCJhdXRoX3RpbWUiOjE1ODExMzkwNDEsInVzZXJfaWQiOiJwd0UweXFyak9PZWl6S1ZFOVljTVRmQlJQdDEzIiwic3ViIjoicHdFMHlxcmpPT2VpektWRTlZY01UZkJSUHQxMyIsImlhdCI6MTU4MTE0MjA1OSwiZXhwIjoxNTgxMTQ1NjU5LCJlbWFpbCI6ImFsaS5uYWRqYXI5NUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsiYWxpLm5hZGphcjk1QGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.HNfaKorPrwfD88CfNoNo4V_j_CaDiDaLC_KFP1v68VOs6d3kmMOUw_7KhGPcTdq4nZO9sBw5rxeb_ULpLnP_bWHJiPsUbs1Eh70iRZX2CvblFe3Yh4WVOMbvXGk389ZBScRhiUkAkptxSnQWfDQgOw3vz7sNuiX4gZ6ZHOk_1DBBUB81dMFvSBTgybgH17YuSM0yr-H9ARrIUxAPYaafsdPQXQzz4x5nN1_IbLcx76Qq5KFBWtjCu8snkQ3KGwZtUxczNQ29EWHSBq8H3dkHWg53qW-TXfO3ZB1U1HeVtrMvbvRpWbsszD-HdnYaDFUVI2e5-T19lW1MQkS0BiHTMA"
+      //         length: 2
+      //         __proto__: Array(0)
+      //     1: Array(2)
+      //         0: "@nba_app@refreshToken"
+      //         1: "AEu4IL2fDO4ZTyf86MwrSb0_A-5BUbccW003GZ2pD1LOP9HPViMT9myYQNM4VJ-alzdRvaTJjv4qplFmzY-Hyf9UNMuFGwrFHUO2siPyZmZpMQsAKfQnMDFHv9tNtkUTlUp0I-AL_sThskcdLGsbTlOHUq-Q4wPCw7gf71x0tjQcn1WxZv-WlB9KltuAQcUOomK9mxg5x1V5iHEohu8OgzwwM3tCAyLYzA"
+      //         length: 2
+      //         __proto__: Array(0)
+      //     2: Array(2)
+      //         0: "@nba_app@expireToken"
+      //         1: "1581142057598"
+      //         length: 2
+      //         __proto__: Array(0)
+      //     3: Array(2)
+      //         0: "@nba_app@uid"
+      //         1: "pwE0yqrjOOeizKVE9YcMTfBRPt13"
+      //         length: 2
+      //         __proto__: Array(0)
+      //         length: 4
+      //         __proto__: Array(0)
+
+      console.log('value[0][1] = '+value[0][1]);
+      console.log(value[0][1] === null);
+      console.log(value[0][1] === 'null');
+      
       if (value[0][1] === null) {
-        this.setState({ loading: false })
+        this.setState({ loading: false }) // means: show AuthForm
       } else {
         this.props.autoSignIn(value[1][1]).then(() => {
           if (!this.props.User.auth.token) {
-            this.setState({ loading: false })
+            this.setState({ loading: false }) // means: show AuthForm
           } else {
             setTokens(this.props.User.auth, () => {
               this.goNext();
@@ -64,7 +96,6 @@ class Auth extends Component {
       return (
         <ScrollView style={styles.container}>
           <View>
-            <Text>Now inside Auth</Text>
             <LOGO />
             {/* <Button
               title="go"

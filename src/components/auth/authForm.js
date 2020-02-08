@@ -181,7 +181,7 @@ class FormComponent extends Component {
                     autoCapitalize={"none"}
                     keyboardType={"email-address"}
                     onChangeText={value => this.updateInput("email", value)}
-                //overrideStyle={{}}
+                    //overrideStyle={{}}
                 />
 
                 <Input

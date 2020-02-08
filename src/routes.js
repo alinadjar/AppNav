@@ -17,16 +17,53 @@ import { createBottomTabNavigator, createTabNavigator } from 'react-navigation-t
 // SCREENS
 import AuthScreen from './components/auth';
 import Games from './components/game';
+import GamesArticle from './components/game/article';
 import News from './components/news';
+import NewsArticle from './components/news/article';
+import Logo from './utils/Logo';
+
+const headerConf = {
+    headerLayoutPreset: 'center', // alignment of the item inside toolbar
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: '#001338'
+        },
+        headerTintColor: 'white',
+        headerTitle: Logo
+    }
+}
 
 
 const AuthStack = createStackNavigator({
     SignIn: AuthScreen
 });
 
-const AppStack = createBottomTabNavigator({
+
+const NewsStack = createStackNavigator({
     News: News,
-    Games: Games
+    Article: NewsArticle
+}, headerConf);
+
+const GameStack = createStackNavigator({
+    Games: Games,
+    Article: GamesArticle
+}, headerConf);
+
+
+
+const AppStack = createBottomTabNavigator({
+    News: NewsStack,
+    Games: GameStack
+}, {
+    tabBarOptions: {
+        activeTintColor: '#fff',
+        showLabel: false,
+        activeBackgroundColor: '#00194b',
+        inactiveBackgroundColor: '#001338',
+        style: {
+            backgroundColor: '#001338',
+        }
+    }
 });
 
 

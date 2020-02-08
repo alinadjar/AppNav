@@ -81,10 +81,16 @@ export const autoSignIn = (refToken) => {
             "Content-Type": "application/x-www-form-urlencoded"
         }
     }).then(response => {
+
+        console.log('BBBBBBBBBB');
+        console.log(request);
         return response.data
     }).catch(e => {
         return false
     });
+
+    console.log('KKKKKKK');
+    console.log(request);
 
     return {
         type: AUTO_SIGN_IN,
