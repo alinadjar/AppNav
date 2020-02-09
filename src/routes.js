@@ -14,6 +14,9 @@ import { createBottomTabNavigator, createTabNavigator } from 'react-navigation-t
 //import { createDrawerNavigator } from 'react-navigation-drawer';
 
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+
 // SCREENS
 import AuthScreen from './components/auth';
 import Games from './components/game';
@@ -23,7 +26,7 @@ import NewsArticle from './components/news/article';
 import Logo from './utils/Logo';
 
 const headerConf = {
-    headerLayoutPreset: 'center', // alignment of the item inside toolbar
+    headerTitleAlign: 'center', // alignment of the item inside toolbar
     defaultNavigationOptions: {
         headerStyle: {
             backgroundColor: '#001338'
@@ -64,6 +67,21 @@ const AppStack = createBottomTabNavigator({
             backgroundColor: '#001338',
         }
     }
+}, {
+    initialRouteName: 'News',
+    defaultNavigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused, horizontal, tintColor }) => {
+            const { routeName } = navigation.state;
+            let iconName;
+            if (routeName === 'News') {
+                iconName = `ios-basketball`;
+            } else if (routeName === 'Games') {
+                iconName = `md-tv`;
+            }
+
+            return <Ionicons name={iconName} size={25} color={tintColor} />;
+        }
+    })
 });
 
 

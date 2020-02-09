@@ -13,6 +13,8 @@ import { bindActionCreators } from 'redux';
 
 
 import { setTokens } from '../../utils/misc';
+//import Ionicon from 'react-native-vector-icons/Ionicons';
+
 
 
 class FormComponent extends Component {
@@ -193,7 +195,7 @@ class FormComponent extends Component {
                     //overrideStyle={{}}
                     secureTextEntry
                 />
-
+ 
 
 
                 {this.confirmPassword()}

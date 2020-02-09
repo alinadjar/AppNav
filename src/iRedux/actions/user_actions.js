@@ -5,6 +5,7 @@ import { SIGNIN, SIGNUP, FIREBASEURL, REFRESH } from '../../utils/misc';
 
 
 
+
 export function signUp(data) {
 
     console.log('Before sending Ajax call');
@@ -42,30 +43,43 @@ export function signUp(data) {
 
 export function signIn(data) {
 
-    const request = axios({
-        method: 'POST',
-        url: SIGNIN,
-        data: {
-            email: data.email,
-            password: data.password,
-            returnSecureToken: true
-        },
-        header: {
-            "Content-Type": "application/json"
-        }
-    }).then(response => {
-        console.log(response);
-        return response.data
-    }).catch(e => {
-        return false
-    });
+    // const request = axios({
+    //     method: 'POST',
+    //     url: SIGNIN,
+    //     data: {
+    //         email: data.email,
+    //         password: data.password,
+    //         returnSecureToken: true
+    //     },
+    //     header: {
+    //         "Content-Type": "application/json"
+    //     }
+    // }).then(response => {
+    //     console.log(response);
+    //     return response.data
+    // }).catch(e => {
+    //     return false
+    // });
 
 
-    console.log(request);
+    // console.log(request);
 
+    // return {
+    //     type: SIGN_IN,
+    //     payload: request
+    // }
+
+
+    
     return {
         type: SIGN_IN,
-        payload: request
+        payload: new Promise((resolve, reject) => {
+            resolve({
+                localId: '747',
+                idToken: '748',
+                refreshToken: '777'
+            })
+        })
     }
 }
 
@@ -73,28 +87,41 @@ export function signIn(data) {
 
 export const autoSignIn = (refToken) => {
 
-    const request = axios({
-        method: "POST",
-        url: REFRESH,
-        data: "grant_type=refresh_token&refresh_token=" + refToken,
-        header: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-    }).then(response => {
+    // const request = axios({
+    //     method: "POST",
+    //     url: REFRESH,
+    //     data: "grant_type=refresh_token&refresh_token=" + refToken,
+    //     header: {
+    //         "Content-Type": "application/x-www-form-urlencoded"
+    //     }
+    // }).then(response => {
 
-        console.log('BBBBBBBBBB');
-        console.log(request);
-        return response.data
-    }).catch(e => {
-        return false
-    });
+    //     console.log('BBBBBBBBBB');
+    //     console.log(request);
+    //     return response.data
+    // }).catch(e => {
+    //     return false
+    // });
 
-    console.log('KKKKKKK');
-    console.log(request);
+    // console.log('KKKKKKK');
+    // console.log(request);
+
+    // return {
+    //     type: AUTO_SIGN_IN,
+    //     payload: request
+    // }
+
 
     return {
         type: AUTO_SIGN_IN,
-        payload: request
+        payload: new Promise((resolve, reject) => {
+            resolve({
+                user_id: '5',
+                id_token: '6',
+                refresh_token: '7'
+            });
+
+        })
     }
 }
 
