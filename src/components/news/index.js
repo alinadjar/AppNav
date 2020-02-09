@@ -6,7 +6,8 @@ import {
   Text,
   Image,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import Moment from 'moment';
 
@@ -29,12 +30,14 @@ class News extends Component {
 
 
   renderArticles = (news) => {
-    news.articles ?
+    console.log('---------*-----------');
+    console.log(news.articles);
+    return news.articles ?
       news.articles.map((item, i) => (
 
-        <TouchableOpacity 
+        <TouchableOpacity
           key={i}
-          onPress={ () => this.props.navigation.navigate('Article', { ...item })}
+          onPress={() => this.props.navigation.navigate('Article', { ...item })}
         >
           <View style={styles.cardContainer}>
             <View>
@@ -55,7 +58,12 @@ class News extends Component {
         </TouchableOpacity>
       ))
       : null
-  }
+      // < View >
+      //     <ActivityIndicator size='large' />
+      //     <Text style={{ padding: 100 }}>some text here</Text>
+      //     <Ionicon name='ios-brush' size={40} color='#F00' /> 
+      // </View>
+      }
 
 
   render() {
@@ -72,9 +80,9 @@ class News extends Component {
 
 
     return (
-      <ScrollView style={{ backgroundColor: '#F0F0F0' }}>                  
-          {/* <Ionicon name='ios-brush' size={40} color='#F00' /> */}
-          {this.renderArticles(this.props.News)}      
+      <ScrollView style={{ backgroundColor: '#F0F0F0' }}>
+        {/* <Ionicon name='ios-brush' size={40} color='#F00' /> */}
+        {this.renderArticles(this.props.News)}
       </ScrollView>
     );
   }

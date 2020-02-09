@@ -21,13 +21,16 @@ export function getNews() {
             articles.push({
                 ...response.data[key],
                 id: key
-            });
-
-            return articles;
+            });            
         }
+
+        return articles;
+
     }).catch(e => {
         return false
     });
+
+    
 
     return {
         type: GET_NEWS,
