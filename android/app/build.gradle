@@ -190,6 +190,9 @@ dependencies {
     // added for vector icons
     implementation project(':react-native-vector-icons')
 
+    // added for react-native-video
+    // implementation "androidx.appcompat:appcompat:1.0.0"
+
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
         debugImplementation files(hermesPath + "hermes-debug.aar")

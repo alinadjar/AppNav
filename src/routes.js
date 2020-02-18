@@ -73,7 +73,7 @@ const AppStack = createBottomTabNavigator({
         tabBarIcon: ({ focused, horizontal, tintColor }) => {
             const { routeName } = navigation.state;
             let iconName;
-            console.log('routeName:=========>>>> ' + routeName);
+            //console.log('routeName:=========>>>> ' + routeName);
             if (routeName === 'News') {
                 iconName = 'ios-basketball';
             } else if (routeName === 'Games') {

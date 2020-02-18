@@ -24,39 +24,49 @@ class Game extends Component {
 
   showGames = (list) => {
 
-    list.games ?
-      list.games.map((item, i) => (
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('Article', {
-            ...item
-          })}
-          key={i}
-        >
-          <View style={styles.gameContainer}>
-            <View style={styles.gamebox}>
-              <Image
-                source={{ uri: `${item.awayData.logo}` }}
-                style={{ height: 80, width: 80 }}
-                resizeMode="contain"
-              />
-              <Text style={styles.teamRecord}>{item.awayData.wins} - {item.awayData.loss}</Text>
+    console.log('>>>>>>>>>  showGames: ');
+    console.log(list);
+
+    // return (
+    //   <Text>Hey ...</Text>
+    // );
+
+    return (
+      list.games ?
+        list.games.map((item, i) => (
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Article', {
+              ...item
+            })}
+            key={i}
+          >
+            <View style={styles.gameContainer}>
+              <View style={styles.gamebox}>
+                <Image
+                  source={{ uri: `${item.awayData.logo}` }}
+                  style={{ height: 80, width: 80 }}
+                  resizeMode="contain"
+                />
+                <Text style={styles.teamRecord}>{item.awayData.wins} - {item.awayData.loss}</Text>
+              </View>
+              <View style={styles.gamebox}>
+                <Text style={styles.gameTime}>{item.time}</Text>
+                <Text>{Moment(item.date).format('d MMMM')}</Text>
+              </View>
+              <View style={styles.gamebox}>
+                <Image
+                  source={{ uri: `${item.localData.logo}` }}
+                  style={{ height: 80, width: 80 }}
+                  resizeMode="contain"
+                />
+                <Text style={styles.teamRecord}>{item.localData.wins} - {item.localData.loss}</Text>
+              </View>
             </View>
-            <View style={styles.gamebox}>
-              <Text style={styles.gameTime}>{item.time}</Text>
-              <Text>{Moment(item.date).format('d MMMM')}</Text>
-            </View>
-            <View style={styles.gamebox}>
-              <Image
-                source={{ uri: `${item.localData.logo}` }}
-                style={{ height: 80, width: 80 }}
-                resizeMode="contain"
-              />
-              <Text style={styles.teamRecord}>{item.localData.wins} - {item.localData.loss}</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      ))
-      : null
+          </TouchableOpacity>
+        ))
+        : null
+
+    );
   }
 
   render() {

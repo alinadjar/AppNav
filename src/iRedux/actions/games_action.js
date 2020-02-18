@@ -1,7 +1,7 @@
 
 import { GET_GAMES } from '../types';
 
-import Axios from 'axios';
+import axios from 'axios';
 import { FIREBASEURL ,convertFirebase, findTeamData} from '../../utils/misc';
 
 
@@ -29,6 +29,9 @@ export function getGames(){
                         localData: findTeamData(articles[key].local,teams)
                     })
                 }
+
+                console.log('games action result:');
+                console.log(responseData);
                 resolve(responseData)
             })
         }).catch(e=>{

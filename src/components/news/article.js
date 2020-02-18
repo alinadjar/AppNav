@@ -8,6 +8,7 @@ import {
   ScrollView,
   StyleSheet
 } from 'react-native';
+import Moment from 'moment';
 
 
 class ArticleComponent extends Component {
