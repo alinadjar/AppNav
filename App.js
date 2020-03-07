@@ -7,11 +7,11 @@ import {
   Alert,
   PermissionsAndroid,
   Image, Button,
-  Platform, ToastAndroid, ProgressBarAndroid
+  Platform, ToastAndroid,
 } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import { AlertModal } from './src/utils/modals/AlertModal';
+import { ProgressModal } from './src/utils/modals/ProgressModal';
 
 
 
@@ -46,7 +46,7 @@ class App extends Component {
   state = {
     progress: 0,
     loading: false,
-    modal_Alert_Show: false,
+    modal_Progress_Show: false,
     modalBodyText: '-'
   }
 
@@ -97,16 +97,17 @@ class App extends Component {
 
 
     this.setState({
-      modal_Alert_Show: true,
+      modal_Progress_Show: true,
       progress: 0,
-      loading: true
+      loading: true,
+      modalBodyText: ''
     });
 
 
     //RNFetchBlob.config({
     config({
-      // appendExt: 'apk',
-      // timeout: 180000,
+      appendExt: 'apk',
+      timeout: 180000,
       // addAndroidDownloads: {
       //   notification: true,
       //   useDownloadManager: true,
@@ -115,12 +116,12 @@ class App extends Component {
       //   title: "Ha..Ha..Ha..",
       //   description: ';)',
       //   path: fs.dirs.PictureDir
-      // }
+      // },
       path: fs.dirs.DownloadDir + "/A.apk",
       fileCache: true
     })
       .fetch("GET", downloadUrl)
-      .progress({ interval: 500 }, (received, total) => {
+      .progress({ interval: 250 }, (received, total) => {
         console.log('progress', received / total);
         console.log('========> ' + (received / total) * 100);
         //alert((received / total) * 100);
@@ -134,7 +135,7 @@ class App extends Component {
       .then(res => {
         console.log(res);
         this.setState({
-          modal_Alert_Show: false,
+          modal_Progress_Show: false,
           progress: 100,
           loading: false
         });
@@ -153,7 +154,7 @@ class App extends Component {
       })
       .catch(error => {
         console.log(error);
-        this.setState({ modal_Alert_Show: false });
+        this.setState({ modal_Progress_Show: false });
         alert(error);
         Linking.openURL(downloadUrl)
       });
@@ -194,7 +195,7 @@ class App extends Component {
 
     console.log(`now inside downloadAPK2, from ${downloadUrl}`);
 
-    this.setState({ modal_Alert_Show: true });
+    this.setState({ modal_Progress_Show: true });
 
     //RNFetchBlob.config({
     config({
@@ -230,11 +231,11 @@ class App extends Component {
 
         this.setState({
           progress: 0,
-          //modal_Alert_Show: true
+          //modal_Progress_Show: true
         });
 
 
-        this.setState({ modal_Alert_Show: false });
+        this.setState({ modal_Progress_Show: false });
 
         // RNFetchBlob.fs.exists(res.path()).then(exist=>{
         //     console.log(`file ${exist ? '' : 'not'} exists`)
@@ -260,22 +261,11 @@ class App extends Component {
       .catch((errorMessage, statusCode) => {
         console.log("error with downloading file", errorMessage);
         console.log(error);
-        this.setState({ modal_Alert_Show: false });
+        this.setState({ modal_Progress_Show: false });
         //Linking.openURL(downloadUrl)
       });
   }
 
-
-
-
-  close_AlertModal_callback_btnReturn = () => {
-    this.setState({ modal_Alert_Show: false });
-  }
-
-
-  close_AlertModal_callback = () => {
-    this.setState({ modal_Alert_Show: false });
-  }
 
   render() {
     return (
@@ -283,51 +273,38 @@ class App extends Component {
         <View style={styles.MainContainer}>
 
           <View style={{ borderWidth: 1 }}>
-            <Image source={{ uri: 'http://tigmis.tabarok.ir/sites/all/themes/adp/images/people/Ali_Nadjar.jpg' }}
+            {/* <Image source={{ uri: 'http://tigmis.tabarok.ir/sites/all/themes/adp/images/people/Ali_Nadjar.jpg' }} */}
+            <Image source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Ayatollah_Ali_Khamenei_at_the_Great_Conference_of_Basij_members_at_Azadi_stadium_October_2018_012.jpg/220px-Ayatollah_Ali_Khamenei_at_the_Great_Conference_of_Basij_members_at_Azadi_stadium_October_2018_012.jpg' }}
               style={{ width: 200, height: 300 }} />
           </View>
 
-          <TouchableOpacity style={styles.button} onPress={this.downloadImage} >
+          {/* <TouchableOpacity style={styles.button} onPress={this.downloadImage} >
             <Text style={styles.text}>Click To Download Above Image</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={[styles.button, { backgroundColor: '#F55', }]} onPress={this.downloadAPK} >
             <Text style={styles.text}>Click To Download APK</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> 
 
           <TouchableOpacity style={[styles.button, { backgroundColor: '#F55', }]} onPress={this.downloadAPK2} >
             <Text style={styles.text}>Download APK with Progress</Text>
-          </TouchableOpacity>
+          </TouchableOpacity>*/}
 
 
           <Button onPress={() => this.downloadFile()} title="Download" />
 
 
           {this.state.loading ? (
-            <View>
-              <ProgressBarAndroid
-                styleAttr="Large"
-                indeterminate={false}
-                progress={this.state.progress}
-              />
-              <Text>{this.state.progress}</Text>
-            </View>
+            <ProgressModal
+              modalVisible={this.state.modal_Progress_Show}
+              bodyTXT={this.state.modalBodyText}
+              progress={this.state.progress}
+            />            
 
           ) : null}
 
 
-        </View>
-
-        <AlertModal
-          modalVisible={this.state.modal_Alert_Show}
-          returnTXT='OK'
-          bodyTXT={this.state.modalBodyText}
-          logoType='CONFIRM'
-          logoTXT='SUCCESS'
-          btnReturnCallback={this.close_AlertModal_callback_btnReturn}
-          closeCallback={this.close_AlertModal_callback}
-        />
-
+        </View>        
       </>
     );
   }
